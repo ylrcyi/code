@@ -1,0 +1,92 @@
+body {
+    font-family: Inter;
+    background-color: rgb(18, 18, 18);
+    color: rgb(200, 200, 200);
+}
+
+.event {
+    margin-bottom: 20px;
+}
+
+.teams-list {
+    padding-left: 20px;
+}
+
+.team-link {
+    display: block;
+    margin: 5px 0;
+    color: rgb(200,200,200);
+}
+
+.team-stats {
+    font-size: 0.9em;
+    color: gray;
+}
+
+a {
+    color: rgb(200, 200, 200);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content {
+    align-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    max-height: 0; /* Collapsed state */
+    overflow: hidden; /* Hide content when collapsed */
+    transition: max-height 0.3s ease; /* Smooth transition for expanding */
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.content.expanded {
+    max-height: 2500px; /* Expanded state - adjust as needed */
+}
+
+.team-wrapper {
+    text-align:center;
+    border: medium solid #E42363;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.event {
+    border: medium solid #6FE2D2;
+    border-radius: 15px;
+    margin: 15px;
+} 
+
+h2 {
+    padding-left: 15px;
+}
+
+.collapsible {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.arrow {
+    display: inline-block;
+    transition: transform 0.3s ease; /* Smooth rotation */
+    padding-right: 15px;
+}
+
+.collapsible.active .arrow {
+    transform: rotate(180deg); /* Rotate 180 degrees when expanded */
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #6FE2D2
+}
+
+input {
+    background-color: rgb(18, 18, 18);
+    border-radius: 5px;
+    color: rgb(200, 200, 200);
+}

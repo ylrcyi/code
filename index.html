@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTC Events</title>
+  <link rel="stylesheet" href="/styles.css">
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+</head>
+<body>
+
+  <h1>FTC Events</h1>
+  <div id="events-container"></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    try {
+      const response = await fetch('/api/events');
+      const events = await response.json();
+
+      if (!events || events.length === 0) {
+        console.error('No events data found.');
+        const container = document.getElementById('events-container');
+        container.innerHTML = '<p>No events data available.</p>';
+        return;
+      }
+
+      const container = document.getElementById('events-container');
+
+      events.forEach(event => {
+        const eventDiv = document.createElement('div');
+        eventDiv.className = 'event';
+
+        const eventTitle = document.createElement('h2');
+        eventTitle.textContent = event.event.name;
+        eventTitle.className = 'collapsible';
+
+        const arrow = document.createElement('span');
+        arrow.className = 'arrow';
+        arrow.textContent = '▼';
+        eventTitle.appendChild(arrow);
+
+        eventDiv.appendChild(eventTitle);
+
+        const teamContainer = document.createElement('div');
+        teamContainer.className = 'content';
+
+        event.event.teams.forEach(team => {
+          // Create outer div to hold both link and rank input
+          const teamWrapper = document.createElement('div');
+          teamWrapper.className = 'team-wrapper';
+
+          // Create the team link element
+          const teamLink = document.createElement('a');
+          teamLink.href = `/team/${team.teamNumber}`;
+          teamLink.className = 'team';
+          teamLink.style.textDecoration = 'none';
+          teamLink.style.color = 'inherit';
+
+          // Create inner content for the team link
+          const teamContent = document.createElement('div');
+
+          const teamNumber = document.createElement('h3');
+          teamNumber.textContent = `Team ${team.teamNumber}`;
+          teamContent.appendChild(teamNumber);
+
+          const quickStats = team.team.quickStats;
+          const totalValue = quickStats.tot.value ? quickStats.tot.value.toFixed(2) : 'N/A';
+          const autoValue = quickStats.auto.value ? quickStats.auto.value.toFixed(2) : 'N/A';
+          const dcValue = quickStats.dc.value ? quickStats.dc.value.toFixed(2) : 'N/A';
+          const egValue = quickStats.eg.value ? quickStats.eg.value.toFixed(2) : 'N/A';
+
+          const statsDiv = document.createElement('div');
+          statsDiv.className = 'quick-stats';
+          statsDiv.innerHTML = `
+            <p>Total: ${totalValue}</p>
+            <p>Auto: ${autoValue}</p>
+            <p>Driver-Controlled: ${dcValue}</p>
+            <p>End Game: ${egValue}</p>
+          `;
+          teamContent.appendChild(statsDiv);
+          teamLink.appendChild(teamContent);
+          teamWrapper.appendChild(teamLink);
+
+          // Create the rank input element outside the team link
+          const rankInput = document.createElement('input');
+          rankInput.type = 'number';
+          rankInput.placeholder = 'Rank';
+          rankInput.className = 'rank-input';
+
+          // Handle Enter key to update rank and sort
+          rankInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+              teamWrapper.dataset.rank = rankInput.value; // Store the rank in a data attribute
+              sortTeams(teamContainer); // Call the sort function
+            }
+          });
+
+          teamWrapper.appendChild(rankInput);
+          teamContainer.appendChild(teamWrapper);
+        });
+
+        eventDiv.appendChild(teamContainer);
+        container.appendChild(eventDiv);
+      });
+
+      const collapsibles = document.getElementsByClassName('collapsible');
+      Array.from(collapsibles).forEach(collapsible => {
+        collapsible.addEventListener('click', function() {
+          this.classList.toggle('active');
+          const content = this.nextElementSibling;
+          content.classList.toggle('expanded');
+        });
+      });
+    } catch (error) {
+      console.error('Failed to load events data:', error);
+      document.getElementById('events-container').innerHTML = '<p>Error loading events data. Please try again later.</p>';
+    }
+  });
+
+  // Function to sort teams based on rank
+  function sortTeams(container) {
+    const teams = Array.from(container.getElementsByClassName('team-wrapper'));
+
+    teams.sort((a, b) => {
+      const rankA = parseInt(a.querySelector('.rank-input').value) || Infinity;
+      const rankB = parseInt(b.querySelector('.rank-input').value) || Infinity;
+      return rankA - rankB;
+    });
+
+    teams.forEach(team => container.appendChild(team));
+  }
+</script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Page</title>
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+  <link rel="stylesheet" href="/styles2.css">
+</head>
+<body>
+
+  <h1 id="team-header"></h1>
+  <div id="team-stats">
+    <p>Total: <span id="tot-value">Loading...</span></p>
+    <p>Auto: <span id="auto-value">Loading...</span></p>
+    <p>Driver-Controlled: <span id="dc-value">Loading...</span></p>
+    <p>End Game: <span id="eg-value">Loading...</span></p>
+  </div>
+
+  <!-- Container for drawing canvas and buttons -->
+  <div id="canvas-container">
+    <canvas id="drawing-canvas"></canvas>
+    <div id="button-container">
+      <button id="save-button">Save Drawing</button>
+      <button id="clear-button">Clear Drawing</button>
+    </div>
+  </div>
+
+      <section>
+    <h2>Pre-Scouting</h2>
+    
+    <!-- Preload Item Dropdown -->
+    <label for="preload-item">Preload Item:</label>
+    <select id="preload-item">
+      <option value="sample">Sample</option>
+      <option value="specimen">Specimen</option>
+    </select>
+
+    <!-- High Checkbox -->
+    <label>
+      <input type="checkbox" id="high"> High
+    </label>
+
+    <!-- Ascent Level Dropdown -->
+    <label for="ascent-level">Ascent Level:</label>
+    <select id="ascent-level">
+      <option value="level1">Level 1</option>
+      <option value="level2">Level 2</option>
+      <option value="level3">Level 3</option>
+    </select>
+
+    <!-- Preferred Game Element Dropdown -->
+    <label for="preferred-game-element">Preferred Game Element:</label>
+    <select id="preferred-game-element">
+      <option value="sample">Sample</option>
+      <option value="specimen">Specimen</option>
+    </select>
+
+    <!-- High Chamber Checkbox -->
+    <label>
+      <input type="checkbox" id="high-chamber"> High Chamber
+    </label>
+
+    <!-- High Rung Checkbox -->
+    <label>
+      <input type="checkbox" id="high-rung"> High Rung
+    </label>
+
+    <!-- Average Cycle Count Input -->
+    <label for="avg-cycle-count">Average Cycle Count:</label>
+    <input type="number" id="avg-cycle-count" min="0">
+
+    <!-- Park Checkbox -->
+    <label>
+      <input type="checkbox" id="park"> Park
+    </label>
+  </section>
+
+  <!-- Match Scouting Section -->
+  <section>
+    <h2>Match Scouting</h2>
+    
+    <!-- Disconnection Issues Checkbox -->
+    <label>
+      <input type="checkbox" id="disconnection-issues"> Disconnection Issues
+    </label>
+
+    <!-- Major Penalty Input -->
+    <label for="major-penalty">Major Penalty:</label>
+    <input type="number" id="major-penalty" min="0">
+
+    <!-- Minor Penalty Input -->
+    <label for="minor-penalty">Minor Penalty:</label>
+    <input type="number" id="minor-penalty" min="0">
+
+    <!-- Match Scouting Table -->
+    <h3>Match Scouting</h3>
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="2">Match</th>
+          <th colspan="4">Auto</th>
+          <th colspan="4">Teleop</th>
+          <th rowspan="2">Ascent Level</th>
+        </tr>
+        <tr>
+          <th>Number of High Specimens</th>
+          <th>Number of High Samples</th>
+          <th>Number of Low Samples</th>
+          <th>Number of Low Specimens</th>
+          <th>Number of High Specimens</th>
+          <th>Number of High Samples</th>
+          <th>Number of Low Samples</th>
+          <th>Number of Low Specimens</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Repeat this row block for each match -->
+        <tr>
+          <td>Match 1</td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td>
+            <select>
+              <option value="level1">Level 1</option>
+              <option value="level2">Level 2</option>
+              <option value="level3">Level 3</option>
+            </select>
+          </td>
+        </tr>
+                <tr>
+          <td>Match 2</td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td>
+            <select>
+              <option value="level1">Level 1</option>
+              <option value="level2">Level 2</option>
+              <option value="level3">Level 3</option>
+            </select>
+          </td>
+        </tr>
+                  <tr>
+          <td>Match 3</td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td>
+            <select>
+              <option value="level1">Level 1</option>
+              <option value="level2">Level 2</option>
+              <option value="level3">Level 3</option>
+            </select>
+          </td>
+        </tr>
+                  <tr>
+          <td>Match 4</td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td>
+            <select>
+              <option value="level1">Level 1</option>
+              <option value="level2">Level 2</option>
+              <option value="level3">Level 3</option>
+            </select>
+          </td>
+        </tr>
+                  <tr>
+          <td>Match 5</td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td><input type="checkbox"></td>
+          <td>
+            <select>
+              <option value="level1">Level 1</option>
+              <option value="level2">Level 2</option>
+              <option value="level3">Level 3</option>
+            </select>
+          </td>
+        </tr>
+        <!-- Repeat rows up to Match 5 as needed -->
+      </tbody>
+    </table>
+  </section>
+
+  <button id="save-data-button">Save Data</button>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const teamNumber = window.location.pathname.split('/').pop();
+      document.getElementById('team-header').textContent = `Team ${teamNumber}`;
+
+      try {
+        const response = await fetch(`/api/team/${teamNumber}`);
+        const teamData = await response.json();
+
+        if (teamData && teamData.quickStats) {
+          document.getElementById('tot-value').textContent = teamData.quickStats.tot.value.toFixed(2) || 'N/A';
+          document.getElementById('auto-value').textContent = teamData.quickStats.auto.value.toFixed(2) || 'N/A';
+          document.getElementById('dc-value').textContent = teamData.quickStats.dc.value.toFixed(2) || 'N/A';
+          document.getElementById('eg-value').textContent = teamData.quickStats.eg.value.toFixed(2) || 'N/A';
+        } else {
+          document.getElementById('team-stats').innerHTML = '<p>Data not available.</p>';
+        }
+      } catch (error) {
+        console.error('Error fetching team data:', error);
+        document.getElementById('team-stats').innerHTML = '<p>Error loading team data.</p>';
+      }
+
+      const canvas = document.getElementById('drawing-canvas');
+      const ctx = canvas.getContext('2d');
+      const fieldImage = new Image();
+      fieldImage.src = '/field.webp';
+      fieldImage.onload = () => {
+        canvas.width = fieldImage.naturalWidth;
+        canvas.height = fieldImage.naturalHeight;
+        ctx.drawImage(fieldImage, 0, 0);
+
+        const savedImage = localStorage.getItem(`drawing-${teamNumber}`);
+        if (savedImage) {
+          const img = new Image();
+          img.src = savedImage;
+          img.onload = () => ctx.drawImage(img, 0, 0);
+        }
+      };
+
+      let drawing = false;
+      canvas.addEventListener('mousedown', () => (drawing = true));
+      canvas.addEventListener('mouseup', () => {
+        drawing = false;
+        ctx.beginPath();
+      });
+      canvas.addEventListener('mousemove', (e) => {
+        if (drawing) {
+          const rect = canvas.getBoundingClientRect();
+          ctx.lineWidth = 2;
+          ctx.lineCap = 'round';
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+          ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+      });
+
+      document.getElementById('save-button').addEventListener('click', () => {
+        const imageData = canvas.toDataURL();
+        localStorage.setItem(`drawing-${teamNumber}`, imageData);
+        alert('Drawing saved!');
+      });
+
+      document.getElementById('clear-button').addEventListener('click', () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(fieldImage, 0, 0);
+        localStorage.removeItem(`drawing-${teamNumber}`);
+      });
+
+      const savedData = localStorage.getItem(`team-data-${teamNumber}`);
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        document.getElementById('preload-item').value = data.preloadItem;
+        document.getElementById('high').checked = data.high;
+        document.getElementById('ascent-level').value = data.ascentLevel;
+        document.getElementById('preferred-game-element').value = data.preferredGameElement;
+        document.getElementById('high-chamber').checked = data.highChamber;
+        document.getElementById('high-rung').checked = data.highRung;
+        document.getElementById('avg-cycle-count').value = data.avgCycleCount;
+        document.getElementById('park').checked = data.park;
+        document.getElementById('disconnection-issues').checked = data.disconnectionIssues;
+        document.getElementById('major-penalty').value = data.majorPenalty;
+        document.getElementById('minor-penalty').value = data.minorPenalty;
+      }
+
+      document.getElementById('save-data-button').addEventListener('click', () => {
+        const data = {
+          preloadItem: document.getElementById('preload-item').value,
+          high: document.getElementById('high').checked,
+          ascentLevel: document.getElementById('ascent-level').value,
+          preferredGameElement: document.getElementById('preferred-game-element').value,
+          highChamber: document.getElementById('high-chamber').checked,
+          highRung: document.getElementById('high-rung').checked,
+          avgCycleCount: document.getElementById('avg-cycle-count').value,
+          park: document.getElementById('park').checked,
+          disconnectionIssues: document.getElementById('disconnection-issues').checked,
+          majorPenalty: document.getElementById('major-penalty').value,
+          minorPenalty: document.getElementById('minor-penalty').value,
+        };
+        localStorage.setItem(`team-data-${teamNumber}`, JSON.stringify(data));
+        alert('Data saved!');
+      });
+    });
+  </script>
+</body>
+</html>
